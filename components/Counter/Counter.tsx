@@ -13,6 +13,8 @@ export function Counter({ description, defaultCount }: CounterProps) {
 		setIncrementor(parseInt(evt.target.value) || 0);
 	}
 
+	const DELAY = 200; // delay in ms
+
 	return (
 		<div>
 			<h5>
@@ -22,11 +24,17 @@ export function Counter({ description, defaultCount }: CounterProps) {
 				Incrementor:
 				<input type="number" onChange={handleIncrementor} value={incrementor} />
 			</label>
-			<button aria-label="decrement" onClick={() => setCount(count - incrementor)}>
+			<button
+				aria-label="decrement"
+				onClick={() => setTimeout(() => setCount((oldCount) => oldCount - incrementor), DELAY)}
+			>
 				-
 			</button>
 			Current Count: {count}
-			<button aria-label="increment" onClick={() => setCount(count + incrementor)}>
+			<button
+				aria-label="increment"
+				onClick={() => setTimeout(() => setCount((oldCount) => oldCount + incrementor), DELAY)}
+			>
 				+
 			</button>
 		</div>
