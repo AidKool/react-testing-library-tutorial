@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Counter } from './Counter';
 
@@ -67,6 +67,19 @@ describe('Counter', () => {
 				await user.type(inputEl, '5');
 				await user.click(screen.getByRole('button', { name: /decrement/i }));
 				expect(await screen.findByText('Current Count: 5')).toBeInTheDocument();
+			});
+		});
+
+		describe('element disappears', () => {
+			it('renders too big and will disappear after 300ms', async () => {
+				render(<Counter defaultCount={10} description="WWW" />);
+				const inputEl = screen.getByLabelText(/incrementor/i);
+				const user = userEvent.setup();
+				await user.clear(inputEl);
+				await user.type(inputEl, '5');
+				await user.click(screen.getByRole('button', { name: /increment/i }));
+				await waitForElementToBeRemoved(() => screen.queryByText(/i am to small/i), { timeout: 1000 });
+				expect(screen.queryByText(/i am to small/i)).toBeNull();
 			});
 		});
 	});

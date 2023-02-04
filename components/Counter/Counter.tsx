@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export interface CounterProps {
 	description: string;
@@ -8,12 +8,21 @@ export interface CounterProps {
 export function Counter({ description, defaultCount }: CounterProps) {
 	const [count, setCount] = useState(defaultCount);
 	const [incrementor, setIncrementor] = useState(1);
+	const [bigEnough, setBigEnough] = useState(defaultCount >= 15);
+
+	const DELAY = 200; // delay in ms
+
+	useEffect(() => {
+		let timeout: NodeJS.Timeout;
+		if (count >= 15) {
+			timeout = setTimeout(() => setBigEnough(true), DELAY);
+		}
+		return () => clearTimeout(timeout);
+	}, [count]);
 
 	function handleIncrementor(evt: ChangeEvent<HTMLInputElement>) {
 		setIncrementor(parseInt(evt.target.value) || 0);
 	}
-
-	const DELAY = 200; // delay in ms
 
 	return (
 		<div>
@@ -37,6 +46,7 @@ export function Counter({ description, defaultCount }: CounterProps) {
 			>
 				+
 			</button>
+			{!bigEnough && <div>I am to small</div>}
 		</div>
 	);
 }
