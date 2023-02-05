@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Counter } from '../components/Counter/Counter';
+import { Example2 } from '../components/examples/example2/Example2';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
-				<Counter description="My Counter" defaultCount={0} />
+				<Example2 />
 			</main>
 		</div>
 	);

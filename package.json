@@ -9,12 +9,15 @@
 		"lint": "next lint",
 		"test": "jest",
 		"test:ci": "jest --coverage --silent --ci",
+		"test:watch": "jest --watch",
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@material-ui/core": "^4.12.4",
+		"@material-ui/data-grid": "^4.0.0-alpha.37",
 		"@testing-library/jest-dom": "^5.16.5",
-		"@testing-library/user-event": "^14.4.3",
 		"@testing-library/react": "^13.4.0",
+		"@testing-library/user-event": "^14.4.3",
 		"@types/jest": "^29.2.2",
 		"@types/node": "18.11.9",
 		"@types/react": "18.0.25",
