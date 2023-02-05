@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Example2 } from '../components/examples/example2/Example2';
+import { MyDrawer } from '../components/examples/example3/Drawer';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
-				<Example2 />
+				<MyDrawer />
 			</main>
 		</div>
 	);
